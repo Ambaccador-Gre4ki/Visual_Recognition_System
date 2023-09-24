@@ -1,0 +1,2 @@
+# Visual_Recognition_System
+Система визуального распознавания
