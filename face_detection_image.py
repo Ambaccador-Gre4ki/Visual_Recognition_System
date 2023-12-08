@@ -4,7 +4,7 @@ import numpy
 import imutils
 
 detector = MTCNN() #создаем сеть нахождения лиц
-image = cv2.imread('demo/detection_image/input/people.jpg') #загрузка картинки с лицами. МБ сделать изменить название папки demo?
+image = cv2.imread('samples/detection_image/input/people.jpg') #загрузка картинки с лицами
 
 if image.shape[0] < image.shape[1]:
     image = imutils.resize(image, height = 1000)
@@ -52,13 +52,13 @@ if faces_boxes:
         if face_box['confidence'] > 0.99:
             cv2.rectangle(image_detected, (x1, y1), (x2, y2), (255, 255, 255, 1), 1)
 
-            face_path = 'demo/detection_image/output/faces/selected/' + face_filename
+            face_path = 'samples/detection_image/output/faces/selected/' + face_filename
             print('\033[92m' + face_filename + '\033[0m')
 
         else:
             cv2.rectangle(image_detected, (x1, y1), (x2, y2),
                           (0, 0, 255, 255, 1), 1)
-            face_path = 'demo/detection_image/output/faces/rejected/' + face_filename
+            face_path = 'samples/detection_image/output/faces/rejected/' + face_filename
             print('\033[91m' + face_filename + '\033[0m')
 
         cv2.rectangle(image_marked,

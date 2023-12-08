@@ -4,7 +4,7 @@ import numpy
 import imutils
 
 detector = MTCNN()
-capture = cv2.VideoCapture('demo/detection_video/input/***.mp4')
+capture = cv2.VideoCapture('samples/detection_video/input/miss-russia.mp4')
 
 frame_id = 0
 face_n = 0
@@ -35,11 +35,11 @@ while True:
                 # Отступы для увеличения рамки
                 d = h - w  # Разница между высотой и шириной
                 w = w + d  # Делаем изображение квадратным
-                x = numpy.maximum(x - round(d / 2), 0)
-                x1 = numpy.maximum(x - round(w / 4), 0)
-                y1 = numpy.maximum(y - round(h / 4), 0)
-                x2 = numpy.minimum(x + w + round(w / 4), image_size[1])
-                y2 = numpy.minimum(y + h + round(h / 4), image_size[0])
+                x = numpy.maximum(x - round(d/2), 0)
+                x1 = numpy.maximum(x - round(w/4), 0)
+                y1 = numpy.maximum(y - round(h/4), 0)
+                x2 = numpy.minimum(x + w + round(w/4), image_size[1])
+                y2 = numpy.minimum(y + h + round(h/4), image_size[0])
 
                 # Получение картинки с лицом
                 cropped = image_detected[y1:y2, x1:x2, :]
@@ -61,7 +61,7 @@ while True:
                     )
 
                     # Путь к директории с качественными изображениями
-                    face_path = 'demo/detection_video/output/faces/selected/' + face_filename
+                    face_path = 'samples/detection_video/output/faces/selected/' + face_filename
 
                     # Информируем консоль
                     print('\033[92m' + face_filename + '\033[0m')
@@ -78,7 +78,7 @@ while True:
                     )
 
                     # Путь к директории с отбракованными изображениями
-                    face_path = 'demo/detection_video/output/faces/rejected/' + face_filename
+                    face_path = 'samples/detection_video/output/faces/rejected/' + face_filename
 
                     # Информируем консоль
                     print('\033[91m' + face_filename + '\033[0m')
@@ -87,7 +87,7 @@ while True:
                 cv2.imwrite(face_path, face_image)
 
         # Сохраняем кадр с видео
-        cv2.imwrite('demo/detection_video/output/frames/' + str(frame_id) + '.jpg', image_detected)
+        cv2.imwrite('samples/detection_video/output/frames/' + str(frame_id) + '.jpg', image_detected)
 
     else:
         break           
